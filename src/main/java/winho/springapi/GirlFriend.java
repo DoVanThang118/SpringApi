@@ -1,11 +1,15 @@
 package winho.springapi;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Component;
 
 
 @Component
 public class GirlFriend {
+
+    @Autowired
+    @Qualifier("dress")
     public Outfit outfit;
 
     public GirlFriend(){
@@ -20,7 +24,6 @@ public class GirlFriend {
         return outfit;
     }
 
-    @Autowired
     public void setOutfit(Outfit outfit) {
         this.outfit = outfit;
     }

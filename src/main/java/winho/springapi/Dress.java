@@ -3,8 +3,7 @@ package winho.springapi;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
-@Component
-@Scope("prototype")
+@Component("dress")
 public class Dress implements Outfit {
     @Override
     public void wear(){
