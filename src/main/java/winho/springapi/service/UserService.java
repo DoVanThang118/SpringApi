@@ -10,4 +10,5 @@ import java.util.List;
 public interface UserService {
     public List<UserDto> getUser();
     public UserDto findId(int id);
+    public List<UserDto> searchUser(String keyword);
 }
