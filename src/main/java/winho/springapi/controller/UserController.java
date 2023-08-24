@@ -4,8 +4,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import winho.springapi.model.dto.UserDto;
+import winho.springapi.model.request.CreateUserReq;
+import winho.springapi.model.request.UpdateUserReq;
 import winho.springapi.service.UserService;
-
 import java.util.List;
 
 @RestController
@@ -33,17 +34,20 @@ public class UserController {
     }
 
     @PostMapping("")
-    public ResponseEntity<?> createUser(){
-        return null;
+    public ResponseEntity<?> createUser(@RequestBody CreateUserReq req){
+        UserDto result = userService.createUser(req);
+        return ResponseEntity.ok(result);
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<?> updateUser(){
-        return null;
+    public ResponseEntity<?> updateUser(@RequestBody UpdateUserReq req, @PathVariable int id){
+        UserDto result = userService.updateUser(req,id);
+        return ResponseEntity.ok(result);
     }
 
     @DeleteMapping ("/{id}")
-    public ResponseEntity<?> deleteUser(){
-        return null;
+    public ResponseEntity<?> deleteUser(@PathVariable int id){
+        userService.deleteUser(id);
+        return ResponseEntity.ok("Delete Success");
     }
 }
