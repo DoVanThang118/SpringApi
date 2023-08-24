@@ -27,4 +27,14 @@ public class UserServiceImpl implements UserService{
         }
         return result;
     }
+
+    @Override
+    public UserDto findId(int id) {
+        for (User user:users){
+            if (user.getId() == id){
+                return UserMapper.userDto(user);
+            }
+        }
+        return null;
+    }
 }

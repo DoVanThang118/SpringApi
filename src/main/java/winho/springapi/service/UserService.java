@@ -9,4 +9,5 @@ import java.util.List;
 @Service
 public interface UserService {
     public List<UserDto> getUser();
+    public UserDto findId(int id);
 }
