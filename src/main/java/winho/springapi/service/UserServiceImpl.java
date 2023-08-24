@@ -2,6 +2,7 @@ package winho.springapi.service;
 
 import org.springframework.stereotype.Component;
 import winho.springapi.entity.User;
+import winho.springapi.exception.NotFoundException;
 import winho.springapi.model.dto.UserDto;
 import winho.springapi.model.mapper.UserMapper;
 
@@ -35,7 +36,7 @@ public class UserServiceImpl implements UserService{
                 return UserMapper.userDto(user);
             }
         }
-        return null;
+        throw new NotFoundException(" Not Found in System");
     }
 
     @Override
@@ -46,6 +47,7 @@ public class UserServiceImpl implements UserService{
                 result.add(UserMapper.userDto(user));
             }
         }
+
         return result;
     }
 }
