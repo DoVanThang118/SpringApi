@@ -7,12 +7,13 @@ import winho.springapi.model.request.CreateUserReq;
 import winho.springapi.model.request.UpdateUserReq;
 
 public class UserMapper {
-    public  static UserDto userDto(User user){
+    public static UserDto userDto(User user) {
         UserDto tmp = new UserDto();
         tmp.setId(user.getId());
         tmp.setName(user.getName());
         tmp.setEmail(user.getEmail());
         tmp.setPhone(user.getPhone());
+        tmp.setRole(user.getRole());
 
         return tmp;
     }
@@ -22,10 +23,10 @@ public class UserMapper {
         user.setName(req.getName());
         user.setEmail(req.getEmail());
         user.setPhone(req.getPhone());
+        user.setRole(req.getRole());
         // Hash password using BCrypt
         String hash = BCrypt.hashpw(req.getPassword(), BCrypt.gensalt(12));
         user.setPassword(hash);
-        user.setRole("USER");
 
         return user;
     }
@@ -36,6 +37,7 @@ public class UserMapper {
         user.setEmail(req.getEmail());
         user.setName(req.getName());
         user.setPhone(req.getPhone());
+        user.setRole(req.getRole());
         // Hash password using BCrypt
         String hash = BCrypt.hashpw(req.getPassword(), BCrypt.gensalt(12));
         user.setPassword(hash);
