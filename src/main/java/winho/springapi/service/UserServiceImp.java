@@ -17,7 +17,7 @@ import java.util.List;
 import java.util.Optional;
 
 @Component
-public class UserServiceImpl implements UserService{
+public class UserServiceImp implements UserService {
     @Autowired
     private UserRepository userRepository;
 
@@ -25,7 +25,7 @@ public class UserServiceImpl implements UserService{
     public List<UserDto> getUser() {
         List<User> users = userRepository.findAll();
         List<UserDto> result = new ArrayList<UserDto>();
-        for (User user : users){
+        for (User user : users) {
             result.add(UserMapper.userDto(user));
         }
         return result;
@@ -34,7 +34,7 @@ public class UserServiceImpl implements UserService{
     @Override
     public UserDto findId(int id) {
         Optional<User> user = userRepository.findById(id);
-        if (user.isEmpty()){
+        if (user.isEmpty()) {
             throw new NotFoundException("Not Found In System");
         }
         return UserMapper.userDto(user.get());
@@ -44,8 +44,8 @@ public class UserServiceImpl implements UserService{
     public List<UserDto> searchUser(String keyword) {
         List<User> users = userRepository.findAll();
         List<UserDto> result = new ArrayList<>();
-        for (User user: users){
-            if (user.getName().contains(keyword)){
+        for (User user : users) {
+            if (user.getName().contains(keyword)) {
                 result.add(UserMapper.userDto(user));
             }
         }
@@ -55,7 +55,7 @@ public class UserServiceImpl implements UserService{
     @Override
     public UserDto createUser(CreateUserReq req) {
         User user = userRepository.findByEmail(req.getEmail());
-        if (user != null){
+        if (user != null) {
             throw new DuplicateRecordException("Email is already in use");
         }
         user = UserMapper.toUser(req);
@@ -67,14 +67,14 @@ public class UserServiceImpl implements UserService{
     @Override
     public UserDto updateUser(UpdateUserReq req, int id) {
         Optional<User> user = userRepository.findById(id);
-        if (user.isEmpty()){
+        if (user.isEmpty()) {
             throw new NotFoundException("Not Found User");
         }
 
-        User update = UserMapper.toUser(req,id);
+        User update = UserMapper.toUser(req, id);
         try {
             userRepository.save(update);
-        }catch (Exception e){
+        } catch (Exception e) {
             System.out.println(e.getMessage());
             throw new InternalServerException("Database error. Can't update user");
         }
@@ -85,12 +85,12 @@ public class UserServiceImpl implements UserService{
     @Override
     public void deleteUser(int id) {
         Optional<User> user = userRepository.findById(id);
-        if (user.isEmpty()){
+        if (user.isEmpty()) {
             throw new NotFoundException("Not Found User");
         }
         try {
             userRepository.deleteById(id);
-        }catch (Exception e){
+        } catch (Exception e) {
             throw new InternalServerException("Database error. Can't delete user");
         }
     }
