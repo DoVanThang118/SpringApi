@@ -5,8 +5,11 @@ import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 import winho.springapi.entity.User;
 
+import java.util.Optional;
+
 @Transactional
 @Repository
 public interface UserRepository extends JpaRepository<User, Integer> {
     public User findByEmail(String email);
+
 }

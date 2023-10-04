@@ -11,9 +11,14 @@ import java.util.List;
 @Service
 public interface UserService {
     public List<UserDto> getUser();
+
     public UserDto findId(int id);
+
     public List<UserDto> searchUser(String keyword);
+
     public UserDto createUser(CreateUserReq req);
+
     public UserDto updateUser(UpdateUserReq req, int id);
+
     public void deleteUser(int id);
 }

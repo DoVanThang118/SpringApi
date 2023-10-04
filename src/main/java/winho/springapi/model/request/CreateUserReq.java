@@ -5,14 +5,28 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import javax.validation.constraints.*;
+
 @Getter
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
 public class CreateUserReq {
+    @NotNull(message = "Name is required")
+    @NotEmpty(message = "Name is required")
     private String name;
+
+    @NotNull(message = "Email is required")
+    @NotEmpty(message = "Email is required")
+    @Email(message = "Please provide a valid email")
     private String email;
+
+    @NotNull(message = "Password is required")
+    @NotEmpty(message = "Password is required")
+    @Size(min = 4, max = 20, message = "Pasword must be between 4 and 20 characters")
     private String password;
-    private String phone;
+
+    @NotNull(message = "Role is required")
+    @NotEmpty(message = "Role is required")
     private String role;
 }
