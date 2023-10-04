@@ -34,11 +34,11 @@ public class UserController {
         return ResponseEntity.ok(users);
     }
 
-    @PostMapping("")
-    public ResponseEntity<?> createUser(@RequestBody CreateUserReq req) {
-        UserDto result = userService.createUser(req);
-        return ResponseEntity.ok(result);
-    }
+//    @PostMapping("")
+//    public ResponseEntity<?> createUser(@RequestBody CreateUserReq req) {
+//        UserDto result = userService.createUser(req);
+//        return ResponseEntity.ok(result);
+//    }
 
     @PutMapping("/{id}")
     public ResponseEntity<?> updateUser(@RequestBody UpdateUserReq req, @PathVariable int id) {
