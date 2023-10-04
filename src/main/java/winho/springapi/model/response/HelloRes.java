@@ -1,4 +1,4 @@
 package winho.springapi.model.response;
 
-public record AuthRes(String jwt) {
+public record HelloRes(String message) {
 }
