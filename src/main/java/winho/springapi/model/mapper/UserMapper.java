@@ -1,6 +1,7 @@
 package winho.springapi.model.mapper;
 
 import org.mindrot.jbcrypt.BCrypt;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import winho.springapi.entity.User;
 import winho.springapi.model.dto.UserDto;
 import winho.springapi.model.request.CreateUserReq;
@@ -22,9 +23,8 @@ public class UserMapper {
         user.setName(req.getName());
         user.setEmail(req.getEmail());
         user.setRole(req.getRole());
-        // Hash password using BCrypt
-        String hash = BCrypt.hashpw(req.getPassword(), BCrypt.gensalt(12));
-        user.setPassword(hash);
+        // Hash password using BCryptPasswordEncoder
+        user.setPassword(new BCryptPasswordEncoder().encode(req.getPassword()));
 
         return user;
     }
