@@ -11,7 +11,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.web.authentication.WebAuthenticationDetailsSource;
 import org.springframework.stereotype.Component;
 import org.springframework.web.filter.OncePerRequestFilter;
-import winho.springapi.service.UserDetailsServiceImpl;
+import winho.springapi.service.impl.UserDetailsServiceImpl;
 
 import java.io.IOException;
 

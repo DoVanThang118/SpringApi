@@ -1,4 +1,4 @@
-package winho.springapi.service;
+package winho.springapi.service.impl;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -11,6 +11,7 @@ import winho.springapi.model.mapper.UserMapper;
 import winho.springapi.model.request.CreateUserReq;
 import winho.springapi.model.request.UpdateUserReq;
 import winho.springapi.repository.UserRepository;
+import winho.springapi.service.UserService;
 
 import java.util.ArrayList;
 import java.util.List;

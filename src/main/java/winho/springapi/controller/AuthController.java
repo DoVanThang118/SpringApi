@@ -19,7 +19,7 @@ import winho.springapi.model.dto.UserDto;
 import winho.springapi.model.request.AuthReq;
 import winho.springapi.model.request.CreateUserReq;
 import winho.springapi.model.response.AuthRes;
-import winho.springapi.service.UserDetailsServiceImpl;
+import winho.springapi.service.impl.UserDetailsServiceImpl;
 import winho.springapi.service.UserService;
 
 @RestController
