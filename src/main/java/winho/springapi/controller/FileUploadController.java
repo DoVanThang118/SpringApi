@@ -9,6 +9,8 @@ import org.springframework.web.multipart.MultipartFile;
 import winho.springapi.service.FileUploadService;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 @RestController
 @RequestMapping("/files")
@@ -18,10 +20,21 @@ public class FileUploadController {
     private FileUploadService fileUploadService;
 
     @PostMapping("/upload")
-    public ResponseEntity<?> uploadImage(@RequestParam("image") MultipartFile file) throws IOException {
-        String uploadImage = fileUploadService.uploadImage(file);
-        return ResponseEntity.status(HttpStatus.OK)
-                .body(uploadImage);
+    public ResponseEntity<?> uploadImage(@RequestParam("image") List<MultipartFile> files) throws IOException {
+//        String uploadImage = fileUploadService.uploadImage(files);
+//        return ResponseEntity.status(HttpStatus.OK).body(uploadImage);
+        List<String> fileUrls = new ArrayList<>();
+
+        for (MultipartFile file : files) {
+            try {
+                String fileUrl = fileUploadService.uploadImage(file);
+                fileUrls.add(fileUrl);
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
+        }
+
+        return ResponseEntity.status(HttpStatus.OK).body(fileUrls);
     }
 
     @GetMapping("/download/{fileName}")
